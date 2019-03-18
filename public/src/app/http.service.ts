@@ -15,10 +15,13 @@ export class HttpService {
     return this.http.get("/api/tasks/" + id);
     // tempObservable.subscribe(data => console.log("Got one task!", data));
   }
-  deleteTask() {
-    var id: any = "5c89a9ef91d28f0bedc40f61";
-    let tempObservable = this.http.delete("/api/tasks/" + id);
-    tempObservable.subscribe(data => console.log("Deleted Task!", data));
+  deleteTask(id: any) {
+    // var id: any = "5c89a9ef91d28f0bedc40f61";
+    return this.http.delete("/api/tasks/" + id);
+    // tempObservable.subscribe(data => console.log("Deleted Task!", data));
+  }
+  createTask(newTask: any){
+    return this.http.post("/api/tasks", newTask);
   }
   // getPokemon(){
   //   let bulbasaur = this.http.get('https://pokeapi.co/api/v2/pokemon/1');
@@ -31,7 +34,7 @@ export class HttpService {
 
 
   constructor(private http: HttpClient) { 
-    this.allTasks();
+    // this.allTasks();
     // this.getTask();
     // this.deleteTask();
     // this.getPokemon();

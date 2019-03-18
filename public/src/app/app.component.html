@@ -1,16 +1,34 @@
   <div class="container">
-    <div class="jumbotron text-center">
-      <h1>Restful Taks API!</h1>
-      <button id="getTasks" (click)="getTasksFromService()" class="btn btn-primary">Get All Tasks!</button>
-      <div *ngIf="tasks" class="taskwrapper">
-        <hr>
-        <h3>All Tasks</h3>
-        <div *ngFor="let t of tasks">
-          <p>Title: {{ t.title }}</p>
-          <p *ngIf="oneTask" class="">{{ oneTask.description }}</p>
-          <button id="getDesc" (click)="getTask(t._id)" class="btn btn-success">Show Details</button>
-        </div>
+    <div class="jumbotron">
+      <div class="createTask">
+        <form (submit)="createTask()">
+            <h1>Create a Task</h1>
+            <p>{{newTask | json}}</p>
+            <div class="form-row form_Wrapper">
+              <div class="form-group col-md-12 col-sm-12">
+                <label for="">Task Title</label>
+                <input class="taskinput" type="text" name="newTask.title" [(ngModel)]="newTask.title">
+              </div>
+              <div class="form-group col-md-12 col-sm-12">
+                <label for="">Task Description</label>
+                <input class="taskinput" type="text" name="newTask.description" [(ngModel)]="newTask.description">
+              </div>
+              <input type="submit" value="Create Task!" class="btn btn-primary button">
+            </div>
+          </form>
       </div>
+      <div class="allTasks">
+        <h1>All Tasks!</h1>
+        <button id="getTasks" (click)="getTasksFromService()" class="btn btn-primary">Get All Tasks!</button>
+        <div *ngIf="tasks" class="taskwrapper">
+          <div *ngFor="let t of tasks">
+            <p>Title: {{ t.title }}</p>
+            <p *ngIf="t._id === oneTask._id" class="">{{ t.description }}</p>
+            <button id="getDesc" (click)="getTask(t._id)" class="btn btn-success">Show Details</button>
+            <hr>
+          </div>
+        </div>
+    </div>
       <!-- <h3>All the Tasks:</h3>
       <ul *ngFor="let t of tasks">
         <li>{{ t.title }}</li>
