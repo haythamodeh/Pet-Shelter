@@ -20,6 +20,11 @@ export class HttpService {
     return this.http.delete("/api/tasks/" + id);
     // tempObservable.subscribe(data => console.log("Deleted Task!", data));
   }
+  updateTask(id: any, data: any) {
+    // var id: any = "5c89a9ef91d28f0bedc40f61";
+    return this.http.put("/api/tasks/" + id, data);
+    // tempObservable.subscribe(data => console.log("Deleted Task!", data));
+  }
   createTask(newTask: any){
     return this.http.post("/api/tasks", newTask);
   }

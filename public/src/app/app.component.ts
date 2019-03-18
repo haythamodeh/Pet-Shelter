@@ -11,11 +11,13 @@ export class AppComponent {
   tasks: object = [];
   oneTask: object = [];
   newTask: any;
+  editTask: any;
   constructor(private httpService: HttpService) {}
 
   ngOnInit() {
     // this.getTasksFromService();
     this.newTask = {title: "", description: ""};
+    this.editTask = {title: "", description: ""};
   }
 
   getTasksFromService(){
@@ -29,7 +31,7 @@ export class AppComponent {
     let observable = this.httpService.getTask(id);
     observable.subscribe(data => {
       console.log("got one data", data);
-      this.oneTask = data;
+      this.editTask = data;
     })
   }
   createTask(){
@@ -39,6 +41,21 @@ export class AppComponent {
       this.newTask = {title: "", description: ""}
     });
   }
+  deleteTask(id: any){
+    let observable = this.httpService.deleteTask(id);
+    observable.subscribe(data => console.log("data deleted", data));
+    return this.tasks;
+  }
+  updateTask(id: any){
+    let observable = this.httpService.updateTask(id, this.editTask);
+    observable.subscribe(data => {
+      console.log("Got the data", data);
+      this.editTask = {title: "", description: ""}
+    })
+  }
+
+
+
   // onButtonClickParam(num: Number): void { 
   //   console.log(`Click event is working with num param: ${num}`);
   // }

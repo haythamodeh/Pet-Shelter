@@ -1,5 +1,5 @@
   <div class="container">
-    <div class="jumbotron">
+    <!-- <div class="jumbotron"> -->
       <div class="createTask">
         <form (submit)="createTask()">
             <h1>Create a Task</h1>
@@ -17,31 +17,38 @@
             </div>
           </form>
       </div>
-      <div class="allTasks">
+      <hr>
+      <div class="allTasks col-md-6">
         <h1>All Tasks!</h1>
         <button id="getTasks" (click)="getTasksFromService()" class="btn btn-primary">Get All Tasks!</button>
         <div *ngIf="tasks" class="taskwrapper">
           <div *ngFor="let t of tasks">
             <p>Title: {{ t.title }}</p>
-            <p *ngIf="t._id === oneTask._id" class="">{{ t.description }}</p>
-            <button id="getDesc" (click)="getTask(t._id)" class="btn btn-success">Show Details</button>
+            <p>Description: {{ t.description }}</p>
+            <button class="btn btn-success" (click)="getTask(t._id)">Edit</button>
+            <button class="btn btn-danger" (click)="deleteTask(t._id)">Delete</button>
             <hr>
           </div>
         </div>
-    </div>
-      <!-- <h3>All the Tasks:</h3>
-      <ul *ngFor="let t of tasks">
-        <li>{{ t.title }}</li>
-      </ul>
-      <h3>The third task</h3>
-      <ul>
-        <li>{{ tasks[2].title }}</li>
-      </ul> -->
-      <!-- <button (click)="onButtonClick()" class="btn btn-primary">Click Me</button>
-      <button (click)="onButtonClickParam(5)" class="btn btn-primary">Click Me</button>
-      <button (click)="onButtonClickParams(5, 'hello')" class="btn btn-primary">Click Me</button>
-      <button (click)="onButtonClickEvent($event)" class="btn btn-primary">Click Me</button> -->
-    </div>
+      </div>
+      <div class="editTask col-md-6">
+        <form>
+          <h1>Edit Task</h1>
+          <p>{{editTask | json}}</p>
+          <div class="form-row form_Wrapper">
+            <div class="form-group col-md-12 col-sm-12">
+              <label for="">Task Title</label>
+              <input class="taskinput" type="text" name="editTask.title" [(ngModel)]="editTask.title">
+            </div>
+            <div class="form-group col-md-12 col-sm-12">
+              <label for="">Task Description</label>
+              <input class="taskinput" type="text" name="editTask.description" [(ngModel)]="editTask.description">
+            </div>
+            <input type="submit" value="Update Task!" class="btn btn-primary button" (click)="updateTask(editTask._id)">
+          </div>
+        </form>
+      </div>
+    <!-- </div> -->
   </div>
 
 <router-outlet></router-outlet>
