@@ -2,9 +2,9 @@ const controller = require("./controller");
 
 module.exports = app => {
   app
-    .get('/api/tasks', controller.allTasks)
-    .get('/api/tasks/:id', controller.getTask)
-    .post('/api/tasks', controller.createTask)
-    .put('/api/tasks/:id', controller.updateTask)
-    .delete('/api/tasks/:id', controller.deleteTask);
+    .get('/api/cakes', controller.allCakes)
+    .get('/api/cakes/:id', controller.getCake)
+    .post('/api/cakes', controller.createCake)
+    .put('/api/cakes/:id', controller.updateCake)
+    .delete('/api/cakes/:id', controller.deleteCake);
 }

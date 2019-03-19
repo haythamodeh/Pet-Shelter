@@ -8,50 +8,57 @@ import { HttpService } from './http.service';
 })
 export class AppComponent {
   title = 'MEAN';
-  tasks: object = [];
-  oneTask: object = [];
-  newTask: any;
-  editTask: any;
+  cakes: object = [];
+  newRating: any;
+  oneCake: object = [];
+  newCake: any;
+  editCake: any;
   constructor(private httpService: HttpService) {}
 
   ngOnInit() {
     // this.getTasksFromService();
-    this.newTask = {title: "", description: ""};
-    this.editTask = {title: "", description: ""};
+    this.newCake = {title: "", description: ""};
+    this.editCake = {title: "", description: ""};
+    this.newRating = {rating: "", comment: ""};
+    this.getAllCakesFromService();
+
   }
 
-  getTasksFromService(){
-    let observable = this.httpService.allTasks();
+  getAllCakesFromService(){
+    let observable = this.httpService.allCakes();
     observable.subscribe(data => {
       console.log("Got our data", data);
-      this.tasks = data;
+      this.cakes = data;
     });
   }
-  getTask(id: any) {
-    let observable = this.httpService.getTask(id);
+  getCake(id: any) {
+    let observable = this.httpService.getCakes(id);
     observable.subscribe(data => {
-      console.log("got one data", data);
-      this.editTask = data;
+      // console.log("got one data", data);
+      this.editCake = data;
     })
   }
-  createTask(){
-    let observable = this.httpService.createTask(this.newTask);
+  createCake(){
+    let observable = this.httpService.createCakes(this.newCake);
     observable.subscribe(data => {
       console.log("got data from post back", data);
-      this.newTask = {title: "", description: ""}
+      this.getAllCakesFromService();
+      this.newCake = {title: "", description: ""}
     });
   }
-  deleteTask(id: any){
-    let observable = this.httpService.deleteTask(id);
+  deleteCake(id: any){
+    let observable = this.httpService.deleteCakes(id);
     observable.subscribe(data => console.log("data deleted", data));
-    return this.tasks;
   }
-  updateTask(id: any){
-    let observable = this.httpService.updateTask(id, this.editTask);
-    observable.subscribe(data => {
+  updateCakes(id: any){
+      let observable = this.httpService.updateCakes(id, this.newRating);
+      observable.subscribe(data => {
       console.log("Got the data", data);
-      this.editTask = {title: "", description: ""}
+      this.newRating = {title: "", description: ""}
     })
+    // console.log("sam");
+    // console.log(id);
+    // console.log(this.newRating);
   }
 
 

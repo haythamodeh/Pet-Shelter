@@ -1,38 +1,38 @@
-const Task = require("./models");
+const Cake = require("./models");
 
 module.exports = {
 
-  allTasks: (req, res) => {
-    Task.find()
+  allCakes: (req, res) => {
+    Cake.find()
       .then(data => console.log(data) || res.json(data))
       .catch(err => console.log(err) || res.json(err));
   },
 
-  getTask: (req, res) => {
+  getCake: (req, res) => {
     const ID = req.params.id;
-    Task.findOne({_id:ID})
+    Cake.findOne({_id:ID})
       .then(data => res.json(data))
       .catch(err => res.json(err));
   },
 
-  createTask: (req, res) => {
+  createCake: (req, res) => {
     const DATA = req.body;
-    Task.create(DATA)
+    Cake.create(DATA)
       .then(data => res.json(data))
       .catch(err => res.json(err));
   },
   
-  updateTask: (req, res) => {
+  updateCake: (req, res) => {
     const ID = req.params.id;
     const DATA = req.body;
-    Task.findOneAndUpdate({_id:ID}, DATA, {runValidators:true, new:true})
+    Cake.findOneAndUpdate({_id:ID}, {$push: {ratings: DATA}}, {runValidators:true, new:true})
       .then(data => req.json(data))
       .catch(err => res.json(err));
   },
 
-  deleteTask: (req, res) => {
+  deleteCake: (req, res) => {
     const ID = req.params.id;
-    Task.findOneAndDelete({_id:ID})
+    Cake.findOneAndDelete({_id:ID})
       .then(data => res.json(data))
       .catch(err => res.json(err));
   }

@@ -1,37 +1,58 @@
   <div class="container">
     <!-- <div class="jumbotron"> -->
-      <div class="createTask">
-        <form (submit)="createTask()">
-            <h1>Create a Task</h1>
-            <p>{{newTask | json}}</p>
+      <h2 class="text-center">Rate My Cake</h2>
+      <div class="createTask col-md-3">
+        <form (submit)="createCake()">
+            <h3>Submit A Cake To Be Rated!!</h3>
+            <!-- <p>{{newTask | json}}</p> -->
             <div class="form-row form_Wrapper">
               <div class="form-group col-md-12 col-sm-12">
-                <label for="">Task Title</label>
-                <input class="taskinput" type="text" name="newTask.title" [(ngModel)]="newTask.title">
+                <label for="">Baker Name</label>
+                <input class="taskinput" type="text" name="newCake.name" [(ngModel)]="newCake.name">
               </div>
               <div class="form-group col-md-12 col-sm-12">
-                <label for="">Task Description</label>
-                <input class="taskinput" type="text" name="newTask.description" [(ngModel)]="newTask.description">
+                <label for="">Image URL</label>
+                <input class="taskinput" type="text" name="newCake.url" [(ngModel)]="newCake.url">
               </div>
-              <input type="submit" value="Create Task!" class="btn btn-primary button">
+              <input type="submit" value="Submit Cake!" class="btn btn-primary button">
             </div>
           </form>
       </div>
-      <hr>
-      <div class="allTasks col-md-6">
-        <h1>All Tasks!</h1>
-        <button id="getTasks" (click)="getTasksFromService()" class="btn btn-primary">Get All Tasks!</button>
-        <div *ngIf="tasks" class="taskwrapper">
-          <div *ngFor="let t of tasks">
-            <p>Title: {{ t.title }}</p>
-            <p>Description: {{ t.description }}</p>
-            <button class="btn btn-success" (click)="getTask(t._id)">Edit</button>
-            <button class="btn btn-danger" (click)="deleteTask(t._id)">Delete</button>
-            <hr>
+      <div class="allTasks col-md-9">
+        <!-- {{newRating | json}} -->
+          <h1 class="text-center">All Cakes!</h1>
+          <!-- <button id="getTasks" (click)="getAllCakesFromService()" class="btn btn-primary">Get All Cakes!</button> -->
+          <div *ngIf="cakes" class="taskwrapper">
+            <div *ngFor="let c of cakes">
+              <div class="ratingGroup">
+              <a (click)="getCake(c._id)"><img src="{{c.url}}" alt="cake Image"></a>
+              <form (submit)="updateCakes(c._id)">
+                
+                  <label for="">Rating</label>
+                <select name="newRating.rating" [(ngModel)]="newRating.rating" class="cakeReview">
+                  <option value="1">1 Star</option>
+                  <option value="2">2 Star</option>
+                  <option value="3">3 Star</option>
+                  <option value="4">4 Star</option>
+                  <option value="5">5 Star</option>
+                </select>
+                <div class="form-group">
+                  <label for="">What do you think?</label>
+                  <input type="text" class="form-control" name="newRating.comment" [(ngModel)]="newRating.comment">
+                </div>
+             
+                <input type="submit" value="Rate Cake!" class="btn btn-primary button">
+                <!-- <button class="btn btn-success" (click)="getTask(t._id)">Edit</button>
+                <button class="btn btn-danger" (click)="deleteTask(t._id)">Delete</button> -->
+              </form>
+            </div>
+              <hr>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="editTask col-md-6">
+      <hr>
+      <app-baked-by *ngIf="editCake.title != '' " [editCake]="editCake"></app-baked-by>
+      <!-- <div class="editTask col-md-12">
         <form>
           <h1>Edit Task</h1>
           <p>{{editTask | json}}</p>
@@ -47,7 +68,9 @@
             <input type="submit" value="Update Task!" class="btn btn-primary button" (click)="updateTask(editTask._id)">
           </div>
         </form>
-      </div>
+      </div> -->
+
+
     <!-- </div> -->
   </div>
 

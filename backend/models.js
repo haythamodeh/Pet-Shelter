@@ -1,20 +1,18 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/task_api_db', {useNewUrlParser:true});
+mongoose.connect('mongodb://localhost/rate_my_cake_db', {useNewUrlParser:true});
 
-const TaskSchema = new mongoose.Schema({
-  title: {
+const CakeSchema = new mongoose.Schema({
+  name: {
     type: String,
-    required: [true, 'Name is required']
+    required: [true, 'Name is Required']
   },
-  description: {
+  url: {
     type: String,
-    required: [true, 'Description is required'],
-    default: ""
+    required: [true, 'URL is Required'],
   },
-  completed: { 
-    type: Boolean, 
-    default: false 
-  },
+  ratings: { 
+    type: Array,
+  }
 }, {timestamps:true});
 
-module.exports = mongoose.model('Task', TaskSchema);
+module.exports = mongoose.model('Cake', CakeSchema);

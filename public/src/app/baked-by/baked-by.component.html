@@ -1,0 +1,14 @@
+<hr>
+<div>
+  <h1>Baked By {{editCake.name}}</h1>
+  <div class="cakeWrapper">
+    <img src="{{editCake.url}}" alt="cake pic">
+    <div class="textBox">
+      <h4>Average Rating {{average}}</h4>
+      <div *ngFor="let rating of editCake.ratings">
+        <hr>
+        Comment: {{rating.comment}} || Rating: {{rating.rating}}
+      </div>
+    </div>
+  </div>
+</div>

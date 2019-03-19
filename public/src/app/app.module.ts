@@ -6,11 +6,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpService } from './http.service';
 import { HttpClientModule } from '@angular/common/http';
+import { BakedByComponent } from './baked-by/baked-by.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    BakedByComponent
   ],
   imports: [
     BrowserModule,
