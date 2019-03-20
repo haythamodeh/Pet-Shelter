@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BakedByComponent } from './baked-by.component';
+import { NewAuthorComponent } from './new-author.component';
 
-describe('BakedByComponent', () => {
-  let component: BakedByComponent;
-  let fixture: ComponentFixture<BakedByComponent>;
+describe('NewAuthorComponent', () => {
+  let component: NewAuthorComponent;
+  let fixture: ComponentFixture<NewAuthorComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BakedByComponent ]
+      declarations: [ NewAuthorComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BakedByComponent);
+    fixture = TestBed.createComponent(NewAuthorComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

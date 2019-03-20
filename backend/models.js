@@ -1,18 +1,12 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/rate_my_cake_db', {useNewUrlParser:true});
+mongoose.connect('mongodb://localhost/authors_db', {useNewUrlParser:true});
 
-const CakeSchema = new mongoose.Schema({
+const AuthorSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: [true, 'Name is Required']
-  },
-  url: {
-    type: String,
-    required: [true, 'URL is Required'],
-  },
-  ratings: { 
-    type: Array,
+    required: [true, 'Name is Required'],
+    minlength: [3, "Must be longer than 3 characters long"]
   }
 }, {timestamps:true});
 
-module.exports = mongoose.model('Cake', CakeSchema);
+module.exports = mongoose.model('Author', AuthorSchema);

@@ -7,59 +7,57 @@ import { HttpService } from './http.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'MEAN';
-  cakes: object = [];
-  newRating: any;
-  oneCake: object = [];
-  newCake: any;
-  editCake: any;
+  authors: object = [];
+  oneAuthor: object = [];
+  newAuthor: any;
+  editAuthor: any;
+  router: any;
   constructor(private httpService: HttpService) {}
 
   ngOnInit() {
     // this.getTasksFromService();
-    this.newCake = {title: "", description: ""};
-    this.editCake = {title: "", description: ""};
-    this.newRating = {rating: "", comment: ""};
-    this.getAllCakesFromService();
+    // this.newAuthor = {name: ""};
+    // this.getAllAuthorsFromService();
+    // console.log("lions",this.authors);
 
   }
 
-  getAllCakesFromService(){
-    let observable = this.httpService.allCakes();
-    observable.subscribe(data => {
-      console.log("Got our data", data);
-      this.cakes = data;
-    });
-  }
-  getCake(id: any) {
-    let observable = this.httpService.getCakes(id);
-    observable.subscribe(data => {
-      // console.log("got one data", data);
-      this.editCake = data;
-    })
-  }
-  createCake(){
-    let observable = this.httpService.createCakes(this.newCake);
-    observable.subscribe(data => {
-      console.log("got data from post back", data);
-      this.getAllCakesFromService();
-      this.newCake = {title: "", description: ""}
-    });
-  }
-  deleteCake(id: any){
-    let observable = this.httpService.deleteCakes(id);
-    observable.subscribe(data => console.log("data deleted", data));
-  }
-  updateCakes(id: any){
-      let observable = this.httpService.updateCakes(id, this.newRating);
-      observable.subscribe(data => {
-      console.log("Got the data", data);
-      this.newRating = {title: "", description: ""}
-    })
+  // getAllAuthorsFromService(){
+  //   let observable = this.httpService.allAuthor();
+  //   observable.subscribe(data => {
+  //     console.log("Got our data", data);
+  //     this.authors = data;
+  //   });
+  // }
+  // getAuthor(id: any) {
+  //   let observable = this.httpService.getAuthor(id);
+  //   observable.subscribe(data => {
+  //     // console.log("got one data", data);
+  //     this.editAuthor = data;
+  //   })
+  // }
+  // createAuthor(){
+  //   let observable = this.httpService.createAuthor(this.newAuthor);
+  //   observable.subscribe(data => {
+  //     console.log("got data from post back", data);
+  //     this.getAllAuthorsFromService();
+  //     this.newAuthor = {title: "", description: ""}
+  //   });
+  // }
+  // deleteAuthor(id: any){
+  //   let observable = this.httpService.deleteAuthor(id);
+  //   observable.subscribe(data => console.log("data deleted", data));
+  // }
+  // updateAuthors(id: any){
+  //     let observable = this.httpService.updateAuthor(id, this.editAuthor);
+  //     observable.subscribe(data => {
+  //     console.log("Got the data", data);
+  //     this.editAuthor = {title: "", description: ""}
+  //   })
     // console.log("sam");
     // console.log(id);
     // console.log(this.newRating);
-  }
+  // }
 
 
 

@@ -5,28 +5,28 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class HttpService {
-  allCakes() {
-    return this.http.get("/api/cakes");
+  allAuthor() {
+    return this.http.get("/api/authors");
     // let tempObservable = this.http.get("/api/tasks");
     // tempObservable.subscribe(data => console.log("Got our tasks!", data));
   }
-  getCakes(id: any) {
+  getAuthor(id: any) {
     // var id: any = "5c89a9ef91d28f0bedc40f61";
-    return this.http.get("/api/cakes/" + id);
+    return this.http.get("/api/authors/" + id);
     // tempObservable.subscribe(data => console.log("Got one task!", data));
   }
-  deleteCakes(id: any) {
+  deleteAuthor(id: any) {
     // var id: any = "5c89a9ef91d28f0bedc40f61";
-    return this.http.delete("/api/cakes/" + id);
+    return this.http.delete("/api/authors/" + id);
     // tempObservable.subscribe(data => console.log("Deleted Task!", data));
   }
-  updateCakes(id: any, data: any) {
+  updateAuthor(id: any, data: any) {
     // var id: any = "5c89a9ef91d28f0bedc40f61";
-    return this.http.put("/api/cakes/" + id, data);
+    return this.http.put("/api/authors/" + id, data);
     // tempObservable.subscribe(data => console.log("Deleted Task!", data));
   }
-  createCakes(newTask: any){
-    return this.http.post("/api/cakes", newTask);
+  createAuthor(newTask: any){
+    return this.http.post("/api/authors", newTask);
   }
   // getPokemon(){
   //   let bulbasaur = this.http.get('https://pokeapi.co/api/v2/pokemon/1');

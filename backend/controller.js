@@ -1,38 +1,38 @@
-const Cake = require("./models");
+const Author = require("./models");
 
 module.exports = {
 
-  allCakes: (req, res) => {
-    Cake.find()
+  allAuthors: (req, res) => {
+    Author.find()
       .then(data => console.log(data) || res.json(data))
       .catch(err => console.log(err) || res.json(err));
   },
 
-  getCake: (req, res) => {
+  getAuthor: (req, res) => {
     const ID = req.params.id;
-    Cake.findOne({_id:ID})
+    Author.findOne({_id:ID})
       .then(data => res.json(data))
       .catch(err => res.json(err));
   },
 
-  createCake: (req, res) => {
+  createAuthor: (req, res) => {
     const DATA = req.body;
-    Cake.create(DATA)
+    Author.create(DATA)
       .then(data => res.json(data))
       .catch(err => res.json(err));
   },
   
-  updateCake: (req, res) => {
+  updateAuthor: (req, res) => {
     const ID = req.params.id;
     const DATA = req.body;
-    Cake.findOneAndUpdate({_id:ID}, {$push: {ratings: DATA}}, {runValidators:true, new:true})
+    Author.findOneAndUpdate({_id:ID}, DATA, {runValidators:true, new:true})
       .then(data => req.json(data))
       .catch(err => res.json(err));
   },
 
-  deleteCake: (req, res) => {
+  deleteAuthor: (req, res) => {
     const ID = req.params.id;
-    Cake.findOneAndDelete({_id:ID})
+    Author.findOneAndDelete({_id:ID})
       .then(data => res.json(data))
       .catch(err => res.json(err));
   }

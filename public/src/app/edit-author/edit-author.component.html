@@ -1,0 +1,14 @@
+<div class="container">
+    <h1>Favorite Authors</h1>
+    <button class="btn btn-primary" [routerLink]="['/']">Home</button>
+    <form (submit)="updateAuthor()">
+      <h3>Edit this Author</h3>
+      <div class="form-group">
+        <p *ngIf="errors" class="text-danger">{{errors.name.message}}</p>
+        <label for="">Name:</label>
+        <input type="text" name="authorForEdit.name" [(ngModel)]="authorForEdit.name">
+      </div>
+      <!-- <button class="btn btn-danger" [routerLink]="['/']">Cancel</button> -->
+      <button class="btn btn-success">Submit</button>
+    </form>
+</div>
