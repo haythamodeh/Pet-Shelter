@@ -8,30 +8,29 @@ import { ActivatedRoute, Router, Params } from '@angular/router';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  authors: object = [];
-  authorForEdit: any;
+  pets: object = [];
+  petForEdit: any;
   constructor(private httpService: HttpService, private _route: ActivatedRoute,
     private _router: Router) { }
 
   ngOnInit() {
-    this.getAllAuthorsFromService();
+    this.getAllPetsFromService();
   }
   goHome() {
     this._router.navigate(['/']);
   }
-
-  getAllAuthorsFromService(){
-    let observable = this.httpService.allAuthor();
+  getAllPetsFromService(){
+    let observable = this.httpService.allPet();
     observable.subscribe(data => {
-      this.authors = data;
+      this.pets = data;
     });
   }
 
-  deleteAuthor(id: any){
-    let observable = this.httpService.deleteAuthor(id);
-    observable.subscribe(data => {
-      this.getAllAuthorsFromService();
-    });
-  }
+  // deleteAuthor(id: any){
+  //   let observable = this.httpService.deleteAuthor(id);
+  //   observable.subscribe(data => {
+  //     this.getAllAuthorsFromService();
+  //   });
+  // }
   
 }

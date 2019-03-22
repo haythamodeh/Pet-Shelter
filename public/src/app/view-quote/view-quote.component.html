@@ -1,26 +1,20 @@
 <div class="container">
-    <h1>Quote Ranks</h1>
-    <button class="btn btn-primary" [routerLink]="['']">Home</button>
-    <button class="btn btn-primary" [routerLink]="['/addQuote', authorForEdit._id]">Add a Quote</button>
-    <h4>We have quotes by {{ authorForEdit.name }}:</h4>
-    <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">Quote</th>
-            <th scope="col">Votes</th>
-            <th scope="col">Actions Available</th>
-          </tr>
-        </thead>
-        <tbody *ngFor="let a of authorForEdit.quotes">
-          <tr>
-            <td>{{a.quote}}</td>
-            <td>{{a.vote}}</td>
-            <td>
-                <button class="btn btn-success" (click)="addRemoveVote(authorForEdit._id, a._id, 1)">Vote up</button>
-                <button class="btn btn-warning" (click)="addRemoveVote(authorForEdit._id, a._id, -1)">Vote Down</button>
-                <button class="btn btn-danger" (click)="deleteQuote(authorForEdit._id, a._id)">Delete</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+    <h1>Pet Shelter</h1>
+    <button class="btn btn-primary" [routerLink]="['/pets']">Home</button>
+    <h4>Details About {{ petForEdit.name }}:</h4>
+    <p>Pet type: {{petForEdit.type}}</p>
+    <p>Pet Description: {{petForEdit.description}}</p>
+    <p>Pet Skills:</p>
+    <div *ngFor="let s of petForEdit.skills">
+      <ul>
+        <li>{{s.skill1}}</li>
+        <li>{{s.skill2}}</li>
+        <li>{{s.skill3}}</li>
+      </ul>
+    </div>
+    <p *ngIf="like_error" class="text-danger">{{like_error}}</p>
+    <p>Likes: {{petForEdit.likes}}</p>
+    <button id="#disablebtn" class="btn btn-warning" (click)="addRemoveVote(petForEdit._id, 1)">Like</button>
+    <button class="btn btn-danger" (click)="deletePet(petForEdit._id)">Adopt the Pet</button>
+    
   </div>

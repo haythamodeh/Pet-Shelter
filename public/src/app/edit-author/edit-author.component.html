@@ -1,15 +1,33 @@
 <div class="container">
-    <h1>Quote Ranks</h1>
-    <button class="btn btn-primary" [routerLink]="['/']">Home</button>
-    <form (submit)="updateAuthor()">
-      <h3>Edit this Author</h3>
+    <h1>Pet Shelter</h1>
+    <h4>Edit This Pet</h4>
+    <button class="btn btn-primary" [routerLink]="['/pets']">Home</button>
+    <p *ngIf="errors" class="text-danger">{{errors.name.message}}</p>
+    <p *ngIf="errors" class="text-danger">{{errors.type.message}}</p>
+    <p *ngIf="errors" class="text-danger">{{errors.description.message}}</p>
+
+    {{petForEdit | json}}
+    <form (submit)="updatePet()">
       <div class="form-group">
-        <p *ngIf="errors" class="text-danger">{{errors.name.message}}</p>
-        <label for="">Name:</label>
-        <input type="text" name="authorForEdit.name" [(ngModel)]="authorForEdit.name">
+        <label for="">Pet Name:</label>
+        <input type="text" name="petForEdit.name" [(ngModel)]="petForEdit.name">
       </div>
-      <!-- <button class="btn btn-danger" [routerLink]="['/']">Cancel</button> -->
-      <button class="btn btn-success">Submit</button>
+      <div class="form-group">
+        <label for="">Pet Type:</label>
+        <input type="text" name="petForEdit.type" [(ngModel)]="petForEdit.type">
+      </div>
+      <div class="form-group">
+        <label for="">Pet Description:</label>
+        <input type="text" name="petForEdit.description" [(ngModel)]="petForEdit.description">
+      </div>
+      <div class="form-group">
+        <label for="">Skills (optional):</label>
+        <input type="text" name="petForEdit.skills[0].skill1" [(ngModel)]="petForEdit.skills[0].skill1">
+        <input type="text" name="petForEdit.skills[0].skill2" [(ngModel)]="petForEdit.skills[0].skill2">
+        <input type="text" name="petForEdit.skills[0].skill3" [(ngModel)]="petForEdit.skills[0].skill3">
+      </div>
+      <button class="btn btn-danger" [routerLink]="['/pets']">Cancel</button>
+      <button class="btn btn-success">Edit Pet</button>
     </form>
 </div>
   

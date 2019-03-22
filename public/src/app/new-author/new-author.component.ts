@@ -9,31 +9,52 @@ import { Params, Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./new-author.component.css']
 })
 export class NewAuthorComponent implements OnInit {
-  newAuthor: any;
+  newPet: any;
   errors: any = {
-    name: ""
+    name: "",
+    type: "",
+    description: "",
   };
+  message: string;
+  skills: any; 
+    
 
 
   constructor(private httpService: HttpService, private _route: ActivatedRoute,
     private _router: Router) { }
 
   ngOnInit() {
-    this.newAuthor = {name: ""};
+    this.newPet = {name: "", type: "", description: ""};
+    this.skills = {skill1: "", skill2: "", skill3: ""};
   }
   goHome() {
     this._router.navigate(['/newAuthor']);
   }
-  createAuthor(){
-    this.httpService.createAuthor(this.newAuthor)
+  createPet(){
+    this.httpService.getPetName(this.newPet.name)
       .subscribe(data => {
-        if(data["errors"]){
-          this.errors = data["errors"];
+        if(data === null){
+          this.httpService.createPet(this.newPet)
+            .subscribe(data => {
+              if(data["errors"]){
+                // console.log(data["errors"]);
+                this.errors = data["errors"];
+              }
+              else {
+                // console.log(data["_id"]);
+                this.httpService.createSkill(data["_id"], this.skills)
+                  .subscribe(data => {
+                    this.newPet = {name: "", type: "", description: ""};
+                    this.skills = {skill1: "", skill2: "", skill3: ""};
+                    this._router.navigate(["/pets"]);
+                  })
+              }
+            });
         }
         else {
-          this.newAuthor = {name: ""};
-          this._router.navigate([""]);
+          this.message = "This pet already exists, choose another pet name";
         }
-      });
+      })
+    
   }
 }

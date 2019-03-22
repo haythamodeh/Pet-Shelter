@@ -1,21 +1,40 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/authors_db', {useNewUrlParser:true});
+mongoose.connect('mongodb://localhost/pet_shelter_db', {useNewUrlParser:true});
 
-const AuthorSchema = new mongoose.Schema({
+const PetSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: [true, 'Name is Required'],
+    required: [true, 'Pet name is Required'],
     minlength: [3, "Must be longer than 3 characters long"],
   },
-  quotes: [{
-    quote: {
+  type: {
+    type: String,
+    required: [true, 'Pet type is Required'],
+    minlength: [3, "Must be longer than 3 characters long"],
+  },
+  description: {
+    type: String,
+    required: [true, 'Pet description is Required'],
+    minlength: [3, "Must be longer than 3 characters long"],
+  },
+  skills: [{
+    skill1: {
       type: String,
-      minlength: [3, "A quote must contain at least three charcters!"]
+      default: ""
     },
-    vote: {
-      type: Number
+    skill2: {
+      type: String,
+      default: ""
+    },
+    skill3: {
+      type: String,
+      default: ""
     }
-  }]
+  }],
+  likes: {
+    type: Number,
+    default: 0
+  }
 }, {timestamps:true});
 
-module.exports = mongoose.model('Author', AuthorSchema);
+module.exports = mongoose.model('Pet', PetSchema);

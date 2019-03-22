@@ -5,47 +5,30 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class HttpService {
-  allAuthor() {
-    return this.http.get("/api/authors");
-    // let tempObservable = this.http.get("/api/tasks");
-    // tempObservable.subscribe(data => console.log("Got our tasks!", data));
+  allPet() {
+    return this.http.get("/api/pets");
   }
-  getAuthor(id: any) {
-    // var id: any = "5c89a9ef91d28f0bedc40f61";
-    return this.http.get("/api/authors/" + id);
-    // tempObservable.subscribe(data => console.log("Got one task!", data));
+  getPet(id: any) {
+    return this.http.get("/api/pets/" + id);
   }
-  deleteAuthor(id: any) {
-    // var id: any = "5c89a9ef91d28f0bedc40f61";
-    return this.http.delete("/api/authors/" + id);
-    // tempObservable.subscribe(data => console.log("Deleted Task!", data));
+  getPetName(name: any) {
+    return this.http.get(`/api/pets/find/${name}`);
   }
-  updateAuthor(id: any, data: any) {
-    // var id: any = "5c89a9ef91d28f0bedc40f61";
-    return this.http.put("/api/authors/" + id, data);
-    // tempObservable.subscribe(data => console.log("Deleted Task!", data));
+  deletePet(id: any) {
+    return this.http.delete("/api/pets/" + id);
   }
-  createAuthor(newTask: any){
-    return this.http.post("/api/authors", newTask);
+  updatePet(id: any, data: any) {
+    return this.http.put("/api/pets/" + id, data);
   }
-  createQuote(id, quote: any){
-    return this.http.post(`/api/authors/add/${id}`, quote);
+  createPet(newpet: any){
+    return this.http.post(`/api/pets`, newpet);
   }
-  deleteQuote(id: any, quoteid: any){
-    
-    return this.http.delete(`/api/authors/deleteQuote/${id}/${quoteid}`);
+  createSkill(id: any, skills: any){
+    return this.http.post(`/api/pets/add/${id}`, skills);
   }
-  addRemoveVote(id: string, quoteid: string, vote: number){
-    return this.http.put(`/api/authors/${id}/${quoteid}/${vote}`, {});
+  addRemoveVote(id: string, like: number){
+    return this.http.put(`/api/pets/${id}/${like}`, {});
   }
-  // getPokemon(){
-  //   let bulbasaur = this.http.get('https://pokeapi.co/api/v2/pokemon/1');
-  //   bulbasaur.subscribe(data => console.log("Got Pokemon", data));
-  // }
-  // getPokemonAbility() {
-  //   let ability = this.http.get('https://pokeapi.co/api/v2/ability/34');
-  //   ability.subscribe(data => console.log("Abilities", data));
-  // }
 
 
   constructor(private http: HttpClient) { 

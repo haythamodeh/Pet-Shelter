@@ -8,9 +8,11 @@ import { HttpService } from '../http.service';
   styleUrls: ['./edit-author.component.css']
 })
 export class EditAuthorComponent implements OnInit {
-  authorForEdit: any;
+  petForEdit: any;
   errors: any = {
-    name: ""
+    name: "",
+    type: "",
+    description: "",
   };
 
 
@@ -19,27 +21,26 @@ export class EditAuthorComponent implements OnInit {
 
   ngOnInit() {
     this._route.params.subscribe((params: Params) => {
-      this.getAuthor(params["id"]);
+      this.getPet(params["id"]);
     });
-    this.authorForEdit = {name: ""};
-  }
+    this.petForEdit = {name: "", type: "", description: "", skills: [{skill1: "", skill2: "", skill3: ""}]};  }
   goHome() {
     this._router.navigate(['/editAuthor']);
   }
-  getAuthor(id: any) {
-    let observable = this.httpService.getAuthor(id);
+  getPet(id: any) {
+    let observable = this.httpService.getPet(id);
     observable.subscribe(data => {
       // console.log("got one data", data);
-      this.authorForEdit = data;
+      this.petForEdit = data;
     })
   }
-  updateAuthor(){
-    this.httpService.updateAuthor(this.authorForEdit._id, this.authorForEdit)
+  updatePet(){
+    this.httpService.updatePet(this.petForEdit._id, this.petForEdit)
       .subscribe(data => {
         if(data["errors"]){
           this.errors = data["errors"];
         } else {
-          this._router.navigate([""]);
+          this._router.navigate(["/pets"]);
         }
     })
   }
