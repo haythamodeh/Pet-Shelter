@@ -9,6 +9,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { NewAuthorComponent } from './new-author/new-author.component';
 import { HomeComponent } from './home/home.component';
 import { EditAuthorComponent } from './edit-author/edit-author.component';
+import { ViewQuoteComponent } from './view-quote/view-quote.component';
+import { AddQuoteComponent } from './add-quote/add-quote.component';
 
 
 @NgModule({
@@ -16,7 +18,9 @@ import { EditAuthorComponent } from './edit-author/edit-author.component';
     AppComponent,
     NewAuthorComponent,
     HomeComponent,
-    EditAuthorComponent
+    EditAuthorComponent,
+    ViewQuoteComponent,
+    AddQuoteComponent
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,5 @@
 <div class="container">
-  <h1>Favorite Authors</h1>
+  <h1>Quote Ranks</h1>
   <button class="btn btn-primary" [routerLink]="['/newAuthor']">Add an Author</button>
   <h4>We have quotes by:</h4>
   <table class="table">
@@ -12,7 +12,9 @@
       <tbody *ngFor="let a of authors">
         <tr>
           <td>{{a.name}}</td>
-          <td><button class="btn btn-success" [routerLink]="['/editAuthor', a._id]">Edit</button>
+          <td>
+              <button class="btn btn-primary" [routerLink]="['viewQuote', a._id]">View Quote</button>
+              <button class="btn btn-success" [routerLink]="['/editAuthor', a._id]">Edit</button>
               <button class="btn btn-danger" (click)="deleteAuthor(a._id)">Delete</button>
           </td>
         </tr>

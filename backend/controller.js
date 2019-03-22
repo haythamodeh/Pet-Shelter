@@ -21,11 +21,38 @@ module.exports = {
       .then(data => res.json(data))
       .catch(err => res.json(err));
   },
+
+  createQuote: (req, res) => {
+    const ID = req.params.id;
+    const DATA = req.body;
+    Author.updateOne({_id: ID}, {$push: {quotes: DATA}}, {runValidators:true, new:true})
+      .then(data => console.log(data) || req.json(data))
+      .catch(err => console.log(err) || res.json(err));
+  },
+
+  deleteQuote: (req, res) => {
+    const ID = req.params.id;
+    const quoteid = req.params.quoteid;
+    console.log(ID);
+    console.log(quoteid);
+    Author.findOneAndUpdate({_id: ID}, {$pull: {quotes: {_id: quoteid}}})
+      .then(data => req.json(data))
+      .catch(err => res.json(err));
+  },
   
   updateAuthor: (req, res) => {
     const ID = req.params.id;
     const DATA = req.body;
     Author.findOneAndUpdate({_id:ID}, DATA, {runValidators:true, new:true})
+      .then(data => req.json(data))
+      .catch(err => res.json(err));
+  },
+
+  addRemoveVote: (req, res) => {
+    const ID = req.params.id;
+    const quoteid = req.params.quoteid;
+    const v = req.params.vote;
+    Author.findOneAndUpdate({"_id": ID, "quotes._id": quoteid}, {$inc: {"quotes.$.vote": v}})
       .then(data => req.json(data))
       .catch(err => res.json(err));
   },

@@ -28,6 +28,16 @@ export class HttpService {
   createAuthor(newTask: any){
     return this.http.post("/api/authors", newTask);
   }
+  createQuote(id, quote: any){
+    return this.http.post(`/api/authors/add/${id}`, quote);
+  }
+  deleteQuote(id: any, quoteid: any){
+    
+    return this.http.delete(`/api/authors/deleteQuote/${id}/${quoteid}`);
+  }
+  addRemoveVote(id: string, quoteid: string, vote: number){
+    return this.http.put(`/api/authors/${id}/${quoteid}/${vote}`, {});
+  }
   // getPokemon(){
   //   let bulbasaur = this.http.get('https://pokeapi.co/api/v2/pokemon/1');
   //   bulbasaur.subscribe(data => console.log("Got Pokemon", data));

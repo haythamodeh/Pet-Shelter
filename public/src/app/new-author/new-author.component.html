@@ -1,5 +1,5 @@
 <div class="container">
-    <h1>Favorite Authors</h1>
+    <h1>Quote Ranks</h1>
     <button class="btn btn-primary" [routerLink]="['/']">Home</button>
     <form (submit)="createAuthor()">
       <h3>Add A New Author</h3>
@@ -8,7 +8,7 @@
         <label for="">Name:</label>
         <input type="text" name="newAuthor.name" [(ngModel)]="newAuthor.name">
       </div>
-      <button class="btn btn-danger" [routerLink]="['/']">Cancel</button>
+      <button class="btn btn-danger" [routerLink]="['']">Cancel</button>
       <button class="btn btn-success">Submit</button>
     </form>
 </div>

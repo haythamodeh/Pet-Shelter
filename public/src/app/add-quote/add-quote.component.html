@@ -1,0 +1,16 @@
+<div class="container">
+    <h1>Quote Ranks</h1>
+    <button class="btn btn-primary" [routerLink]="['']">Home</button>
+    <h4>Provide a quote for {{ authorForEdit.name }}:</h4>
+    <form (submit)="createQuote(authorForEdit._id)">
+      <div class="form-group">
+        {{authorQuote | json}}
+        <p *ngIf="errors" class="text-danger">{{errors.quote}}</p>
+        <label>Quote</label>
+        <input type="text" name="authorQuote.quote" [(ngModel)]="authorQuote.quote">
+      </div>
+      <button class="btn btn-danger" [routerLink]="['/viewQuote', authorForEdit._id]">Cancel</button>
+      <button class="btn btn-success">Add Quote</button>
+    </form>
+  </div>
+
